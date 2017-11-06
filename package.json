@@ -5,7 +5,6 @@
   "license": "MIT",
   "author": "Elie Rotenberg <elie@rotenberg.io>",
   "main": "es5/index.js",
-  "module": "src/index.jsx",
   "repository": {
     "type": "git",
     "url": "https://github.com/elierotenberg/nexus-events.git"
