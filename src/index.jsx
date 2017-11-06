@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import _each from 'lodash/each';
+import _uniqueId from 'lodash/uniqueId';
 import 'should';
 const __DEV__ = process.env.NODE_ENV === 'development';
 
@@ -25,7 +26,7 @@ class EventEmitter {
   emit(ev, a, b, c, d, e, f, g, h, i) {
     // up to 10 arguments
     if(this._listeners[ev] !== void 0) {
-      _.each(this._listeners[ev], (fn) => fn(a, b, c, d, e, f, g, h, i));
+      _each(this._listeners[ev], (fn) => fn(a, b, c, d, e, f, g, h, i));
     }
   }
 
@@ -43,7 +44,7 @@ class EventEmitter {
       this._listeners[ev] = {};
       this._count[ev] = 0;
     }
-    const ln = _.uniqueId();
+    const ln = _uniqueId();
     this._listeners[ev][ln] = fn;
     this._count[ev] = this._count[ev] + 1;
     if(lifespan) {
