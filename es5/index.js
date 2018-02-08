@@ -1,12 +1,23 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _each2 = _interopRequireDefault(require("lodash/each"));
+
+var _uniqueId2 = _interopRequireDefault(require("lodash/uniqueId"));
+
+require("should");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-import _each from 'lodash/each';
-import _uniqueId from 'lodash/uniqueId';
-import 'should';
 
 var __DEV__ = process.env.NODE_ENV === 'development';
 
@@ -38,7 +49,7 @@ function () {
     value: function emit(ev, a, b, c, d, e, f, g, h, i) {
       // up to 10 arguments
       if (this._listeners[ev] !== void 0) {
-        _each(this._listeners[ev], function (fn) {
+        (0, _each2.default)(this._listeners[ev], function (fn) {
           return fn(a, b, c, d, e, f, g, h, i);
         });
       }
@@ -66,8 +77,7 @@ function () {
         this._count[ev] = 0;
       }
 
-      var ln = _uniqueId();
-
+      var ln = (0, _uniqueId2.default)();
       this._listeners[ev][ln] = fn;
       this._count[ev] = this._count[ev] + 1;
 
@@ -135,4 +145,5 @@ function () {
   return EventEmitter;
 }();
 
-export default EventEmitter;
+var _default = EventEmitter;
+exports.default = _default;

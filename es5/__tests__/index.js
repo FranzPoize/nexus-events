@@ -1,13 +1,20 @@
-import { EventEmitter } from '../';
-import Lifespan from 'lifespan';
-import 'should';
+"use strict";
+
+var _ = require("../");
+
+var _lifespan = _interopRequireDefault(require("lifespan"));
+
+require("should");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _global = global,
     describe = _global.describe,
     it = _global.it;
 describe('EventEmitter', function () {
   // Stub tests. Will refactor later.
   it('should not throw', function () {
-    var emitter = new EventEmitter();
+    var emitter = new _.EventEmitter();
     var count = 0;
     var ln = emitter.on('increase', function (n) {
       return count = count + (n || 1);
@@ -21,7 +28,7 @@ describe('EventEmitter', function () {
     emitter.trigger('increase', 100);
     count.should.be.exactly(42);
     var count2 = 1;
-    var lifespan = new Lifespan();
+    var lifespan = new _lifespan.default();
     emitter.on('multiplyBy', function (p) {
       return count2 = count2 * p;
     }, lifespan);
